@@ -1,0 +1,11 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: k8s-tls-watcher
+spec:
+  selector:
+   matchLabels:
+     app: k8s-tls-watcher
+  podMetricsEndpoints:
+    - port: metrics
+      path: "metrics"

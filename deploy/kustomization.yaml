@@ -1,0 +1,6 @@
+resources:
+  - deployment.yaml
+  - rbac.yaml
+  - serviceaccount.yaml
+  - podmonitor.yaml
+  - alertrules.yaml

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-tls-watcher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-tls-watcher
+  template:
+    metadata:
+      labels:
+        app: k8s-tls-watcher
+      # annotations:
+      #   prometheus.io/port: "3031" # tell prometheus to scrape /metrics endpoint's port.
+      #   prometheus.io/scrape: "true"
+      #   prometheus.io/path: /metrics
+    spec:
+      containers:
+      - name: k8s-tls-watcher
+        image: pratapgowda/k8s-tls-watcher:v0.01
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        ports:
+        - containerPort: 3031
+          name: "metrics"
+      serviceAccountName: k8s-tls-watcher
